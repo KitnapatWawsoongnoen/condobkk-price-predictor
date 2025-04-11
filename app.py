@@ -1,6 +1,6 @@
-import streamlit as st
-import numpy as np
 import joblib
+import numpy as np
+import streamlit as st
 from tensorflow.keras.models import load_model
 
 # โหลดโมเดล XGBoost และ Embedding
@@ -44,13 +44,54 @@ def map_floor_level(floor, total_floors):
 st.title("🏙️ พยากรณ์ราคาคอนโดในกรุงเทพฯ")
 
 with st.form("input_form"):
-    location = st.text_input("📍 Location")
+    location = st.selectbox("📍 Location", [
+    "Bang Kapi", "Bang Khen", "Bang Na", "Bang Phlat", "Bang Rak",
+    "Bang Sue", "Bangkok Noi", "Chatuchak", "Chom Thong", "Din Daeng",
+    "Huai Khwang", "Khan Na Yao", "Khlong San", "Khlong Toei", "Lak Si",
+    "Min Buri", "Pathum Wan", "Phasi Charoen", "Phra Khanong", "Phyathai",
+    "Ratchathewi", "Sathon", "Suan Luang", "Thonburi", "Wang Thonglang",
+    "Watthana"])
     bedroom = st.number_input("🛏️ จำนวนห้องนอน", min_value=0, step=1)
     bathroom = st.number_input("🛁 จำนวนห้องน้ำ", min_value=0, step=1)
     area_sqm = st.number_input("📐 พื้นที่ห้อง (ตร.ม.)", min_value=1.0)
     distance_m = st.text_input("🚶‍♀️ ระยะห่างจากสถานี (เมตร) (หากไม่ทราบ ให้เว้นว่าง)")
-    station = st.text_input("🚆 สถานีรถไฟฟ้า")
-    developer = st.text_input("🏗️ Developer")
+    station = st.selectbox("🚉 สถานีรถไฟฟ้า", [
+    "Bang Kapi", "Ramkhamhaeng", "Huamark", "Lat Phrao 101", "Lat Pla Khao",
+    "Si La Salle", "Bang Yi Khan", "Bang Phlat", "Sirindhorn", "Chong Nonsi",
+    "Sam Yan", "Surasak", "lumpini", "Saint Louis", "Hua Lamphong",
+    "Bang Pho", "Sala Daeng", "Bang Son", "Tao Poon", "Fai Chai",
+    "Bang Khun Non", "Chatuchak Park", "Mo Chit", "Lat Phrao", "Kasetsart University",
+    "Phahon Yothin", "Ratchayothin", "Saphan Khwai", "Wat Samian Nari", "Sena Nikhom",
+    "Wutthakat", "Sutthisan", "Thailand Cultural Centre", "Phra Ram 9", "Ratchadaphisek",
+    "Huai Khwang", "Phetchaburi", "Thong Lo", "Phawana", "Nopparat",
+    "Charoen Nakhon", "Khlong Toe", "Krung Thon Buri", "Wongwian Yai", "Asok",
+    "Ekkamai", "Queen Sirikit National Convention Center", "Nana", "Phra Khanong", "Phrom Phong",
+    "Setthabutbamphen", "Chit Lom", "National Stadium", "On Nut", "Phloen Chit",
+    "Bang Wa", "Phasi Charoen", "Ratchadamri", "Bang Chak", "Punnawithi",
+    "Ari", "Udom Suk", "Sanam Pao", "Victory Monument", "Ratchaprarop",
+    "Phaya Thai", "Ratchathewi", "Saphan Taksin", "Si Nut", "Talat Phlu",
+    "Chok Chai 4", "Sukhumvit"])
+    developer = st.selectbox("🏢 Developer", [
+    "Anawat", "Grand Unity Development", "Major Development Estate", "Supalai",
+    "Cube Real Property", "Assetwise", "Estate Q", "Phanalee Estate",
+    "LPN Development", "ANANDA MF Asia Samyan", "Chaopraya Mahanakorn", "Nayara",
+    "Pruksa Real Estate", "ANANDA Development", "Chanachai", "SC Asset Corporation",
+    "Land and House", "Magnolia Quality Development Corporation", "Raimon Land",
+    "Major Development", "BTS Sansiri Holding Nineteen", "SENA HANKYU 1",
+    "SENA Development", "Regent Green Power", "Chewathai Interchange",
+    "Richy Place (2002)", "AP (Thailand)", "Sansiri", "TEN THAI DEVELOPMENT",
+    "Chewathai", "Divine Development Group", "Noble Development",
+    "Plus Property Partner", "Eastern Star Real Estate", "ANANDA MF Asia Pharam 9",
+    "Areeya Property", "All Inspire", "Siri TK", "A Plus Real Estate", "Built Land",
+    "Praya Panich Property", "Siamese Asset", "Issara United", "Plus Property",
+    "Sansiri Venture", "Property Perfect", "Big Tree Asset",
+    "ANANDA MF Asia Thonglor", "Raimon Land Twenty Six", "ANANDA MF Asia Bangchak",
+    "BTS Sansiri Holding Two", "39 Estate", "BTS Sansiri Holding", "The Urban Property",
+    "BTS Sansiri Holding Twelve", "ANANDA MF Asia Ratchaprarop", "TCC Capital land",
+    "ANANDA MF Asia Ratchathewi", "Fragrant Property", "ANANDA MF Asia Victory Monument",
+    "Prinsiri", "Raimon Land Sathorn", "AP ME", "BTS Sansiri Holding Four",
+    "Siri TK One", "AHJ Ekamai", "MJ One", "Nusasiri", "Major Residences",
+    "ANANDA MF Asia Asoke"])
     floor = st.number_input("🏢 ชั้นที่อยู่", min_value=1, step=1)
     total_floors = st.number_input("🏢 จำนวนชั้นทั้งหมดของตึก", min_value=1, step=1)
     facility = st.number_input("🛎️ จำนวนสิ่งอำนวยความสะดวก", min_value=0, step=1)
