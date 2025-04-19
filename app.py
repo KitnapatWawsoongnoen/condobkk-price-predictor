@@ -94,7 +94,7 @@ with st.form("input_form"):
     "ANANDA MF Asia Asoke"])
     floor = st.number_input("Your floor", min_value=1, step=1)
     total_floors = st.number_input("Floors of the building", min_value=1, step=1)
-    facility = st.number_input("Facilities", min_value=0, step=1)
+    facility = st.number_input("Facilities (0 = none, maximum 3: Pool, Fitness, Parking)", min_value=0, step=1)
     
     submitted = st.form_submit_button("PREDICTION")
 
