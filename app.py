@@ -41,7 +41,7 @@ def map_floor_level(floor, total_floors):
         return 5
 
 # ส่วน UI ด้วย Streamlit
-st.title("PRICE PREDICTION SYSTEM IN BANGKOK METROPOLITAN AREA")
+st.title("RENTAL PRICE PREDICTION SYSTEM IN BANGKOK METROPOLITAN AREA")
 
 with st.form("input_form"):
     location = st.selectbox("Location", [
@@ -56,42 +56,35 @@ with st.form("input_form"):
     area_sqm = st.number_input("Room Area (sq.m)", min_value=1.0)
     distance_m = st.text_input("Distance to Station (meters)")
     station = st.selectbox("Train Station", [
-    "Bang Kapi", "Ramkhamhaeng", "Huamark", "Lat Phrao 101", "Lat Pla Khao",
-    "Si La Salle", "Bang Yi Khan", "Bang Phlat", "Sirindhorn", "Chong Nonsi",
-    "Sam Yan", "Surasak", "lumpini", "Saint Louis", "Hua Lamphong",
-    "Bang Pho", "Sala Daeng", "Bang Son", "Tao Poon", "Fai Chai",
-    "Bang Khun Non", "Chatuchak Park", "Mo Chit", "Lat Phrao", "Kasetsart University",
-    "Phahon Yothin", "Ratchayothin", "Saphan Khwai", "Wat Samian Nari", "Sena Nikhom",
-    "Wutthakat", "Sutthisan", "Thailand Cultural Centre", "Phra Ram 9", "Ratchadaphisek",
-    "Huai Khwang", "Phetchaburi", "Thong Lo", "Phawana", "Nopparat",
-    "Charoen Nakhon", "Khlong Toe", "Krung Thon Buri", "Wongwian Yai", "Asok",
-    "Ekkamai", "Queen Sirikit National Convention Center", "Nana", "Phra Khanong", "Phrom Phong",
-    "Setthabutbamphen", "Chit Lom", "National Stadium", "On Nut", "Phloen Chit",
-    "Bang Wa", "Phasi Charoen", "Ratchadamri", "Bang Chak", "Punnawithi",
-    "Ari", "Udom Suk", "Sanam Pao", "Victory Monument", "Ratchaprarop",
-    "Phaya Thai", "Ratchathewi", "Saphan Taksin", "Si Nut", "Talat Phlu",
-    "Chok Chai 4", "Sukhumvit"])
+    "Ari", "Asok", "Bang Chak", "Bang Kapi", "Bang Khun Non", "Bang Pho", "Bang Phlat",
+    "Bang Son", "Bang Wa", "Bang Yi Khan", "Chatuchak Park", "Charoen Nakhon", "Chit Lom",
+    "Chok Chai 4", "Chong Nonsi", "Ekkamai", "Fai Chai", "Hua Lamphong", "Huai Khwang",
+    "Huamark", "Kasetsart University", "Khlong Toe", "Krung Thon Buri", "Lat Phrao",
+    "Lat Phrao 101", "Lat Pla Khao", "lumpini", "Mo Chit", "Nana", "National Stadium",
+    "Nopparat", "On Nut", "Phetchaburi", "Phahon Yothin", "Phasi Charoen", "Phawana",
+    "Phaya Thai", "Phloen Chit", "Phra Khanong", "Phra Ram 9", "Phrom Phong", "Punnawithi",
+    "Queen Sirikit National Convention Center", "Ramkhamhaeng", "Ratchadamri", "Ratchadaphisek",
+    "Ratchaprarop", "Ratchathewi", "Ratchayothin", "Sala Daeng", "Sam Yan", "Sanam Pao",
+    "Saint Louis", "Saphan Khwai", "Saphan Taksin", "Setthabutbamphen", "Si La Salle",
+    "Si Nut", "Sirindhorn", "Sukhumvit", "Surasak", "Sutthisan", "Talat Phlu", "Tao Poon",
+    "Thailand Cultural Centre", "Thong Lo", "Udom Suk", "Victory Monument", "Wat Samian Nari",
+    "Wongwian Yai", "Wutthakat"])
     developer = st.selectbox("Developer", [
-    "Anawat", "Grand Unity Development", "Major Development Estate", "Supalai",
-    "Cube Real Property", "Assetwise", "Estate Q", "Phanalee Estate",
-    "LPN Development", "ANANDA MF Asia Samyan", "Chaopraya Mahanakorn", "Nayara",
-    "Pruksa Real Estate", "ANANDA Development", "Chanachai", "SC Asset Corporation",
-    "Land and House", "Magnolia Quality Development Corporation", "Raimon Land",
-    "Major Development", "BTS Sansiri Holding Nineteen", "SENA HANKYU 1",
-    "SENA Development", "Regent Green Power", "Chewathai Interchange",
-    "Richy Place (2002)", "AP (Thailand)", "Sansiri", "TEN THAI DEVELOPMENT",
-    "Chewathai", "Divine Development Group", "Noble Development",
-    "Plus Property Partner", "Eastern Star Real Estate", "ANANDA MF Asia Pharam 9",
-    "Areeya Property", "All Inspire", "Siri TK", "A Plus Real Estate", "Built Land",
-    "Praya Panich Property", "Siamese Asset", "Issara United", "Plus Property",
-    "Sansiri Venture", "Property Perfect", "Big Tree Asset",
-    "ANANDA MF Asia Thonglor", "Raimon Land Twenty Six", "ANANDA MF Asia Bangchak",
-    "BTS Sansiri Holding Two", "39 Estate", "BTS Sansiri Holding", "The Urban Property",
-    "BTS Sansiri Holding Twelve", "ANANDA MF Asia Ratchaprarop", "TCC Capital land",
-    "ANANDA MF Asia Ratchathewi", "Fragrant Property", "ANANDA MF Asia Victory Monument",
-    "Prinsiri", "Raimon Land Sathorn", "AP ME", "BTS Sansiri Holding Four",
-    "Siri TK One", "AHJ Ekamai", "MJ One", "Nusasiri", "Major Residences",
-    "ANANDA MF Asia Asoke"])
+    "39 Estate",  "A Plus Real Estate",  "AHJ Ekamai",  "All Inspire",  "ANANDA Development",  "ANANDA MF Asia Asoke",  
+    "ANANDA MF Asia Bangchak",  "ANANDA MF Asia Pharam 9",  "ANANDA MF Asia Ratchaprarop",  
+    "ANANDA MF Asia Ratchathewi",  "ANANDA MF Asia Samyan",  "ANANDA MF Asia Thonglor",  "ANANDA MF Asia Victory Monument",  
+    "Anawat",  "AP (Thailand)",  "AP ME",  "Areeya Property",  "Assetwise",  "Big Tree Asset",  
+    "Built Land",  "BTS Sansiri Holding",  "BTS Sansiri Holding Four",  "BTS Sansiri Holding Nineteen",  
+    "BTS Sansiri Holding Twelve",  "BTS Sansiri Holding Two",  "Chaopraya Mahanakorn",  "Chanachai",  
+    "Chewathai",  "Chewathai Interchange",  "Cube Real Property",  "Divine Development Group",  "Eastern Star Real Estate",  
+    "Estate Q",  "Fragrant Property",  "Grand Unity Development",  "Issara United",  "LPN Development",  
+    "Land and House",  "MJ One",  "Magnolia Quality Development Corporation",  "Major Development",  
+    "Major Development Estate",  "Major Residences",  "Nayara",  "Noble Development",  "Nusasiri",  
+    "Phanalee Estate",  "Plus Property",  "Plus Property Partner",  "Praya Panich Property",  "Prinsiri",  
+    "Property Perfect",  "Pruksa Real Estate",  "Raimon Land",  "Raimon Land Sathorn",  "Raimon Land Twenty Six",  
+    "Regent Green Power",  "SC Asset Corporation",  "SENA Development",  "SENA HANKYU 1",  
+    "Sansiri",  "Sansiri Venture",  "Siamese Asset",  "Siri TK", 
+    "Siri TK One",  "Supalai",  "TCC Capital land", "TEN THAI DEVELOPMENT",  "The Urban Property"])
     floor = st.number_input("Your floor", min_value=1, step=1)
     total_floors = st.number_input("Floors of the building", min_value=1, step=1)
     facility = st.number_input("Facilities (0 = none, maximum 3: Pool, Fitness, Parking)", min_value=0, step=1)
@@ -126,7 +119,7 @@ if submitted:
         final_input = np.concatenate([location_emb, station_emb, developer_emb, numerical_features])
         predicted_price = main_model.predict([final_input])
 
-        st.success(f"📊 PRICE PREDICTION: **{predicted_price[0]:,.2f} Bath**")
+        st.success(f"📊 PRICE PREDICTION: **{predicted_price[0]:,.2f} THB**")
 
     except Exception as e:
         st.error(f"เกิดข้อผิดพลาด: {e}")
